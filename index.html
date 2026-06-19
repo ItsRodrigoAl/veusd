@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora P2P con Comisiones</title>
+    <title>Calculadora BDV BPAY</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 450px; margin: 40px auto; padding: 20px; background-color: #f4f6f9; color: #333; }
         .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -22,13 +22,13 @@
 <body>
 
 <div class="card">
-    <h2>Calculadora de Flujo ⚡</h2>
+    <h2>🧮 Calculadora</h2>
 
     <div class="campo">
-        <label for="usdBdv">USD en BDV</label>
+        <label for="usdBdv">¿Cuántos USD tienes en BDV?</label>
         <div class="input-group">
             <input type="number" id="usdBdv" oninput="calcularDesdeUSD()" placeholder="0.00" step="any">
-            <div class="badge">USD (1)</div>
+            <div class="badge">USD</div>
         </div>
     </div>
 
@@ -36,21 +36,21 @@
         <label for="montoBinance">Monto a colocar en Binance</label>
         <div class="input-group">
             <input type="number" id="montoBinance" oninput="calcularDesdeBinance()" placeholder="0.00" step="any">
-            <div class="badge">USD (2)</div>
+            <div class="badge">USD</div>
         </div>
-        <span class="info-comision">Descuento aplicado: -2.5%</span>
+        <span class="info-comision">Comisión: -2.5%</span>
     </div>
 
     <div class="campo">
-        <label for="montoUsdt">Monto a recibir en USDT</label>
+        <label for="montoUsdt">Monto a recibir en Binance</label>
         <div class="input-group">
             <input type="number" id="montoUsdt" oninput="calcularDesdeUsdt()" placeholder="0.00" step="any">
             <div class="badge">USDT (3)</div>
         </div>
-        <span class="info-comision">Comisión incluida: +3.6%</span>
+        <span class="info-comision">Comisión: -3.6%</span>
     </div>
 
-    <p class="help">Escribe en cualquier casilla. El sistema recalcula el flujo completo al instante.</p>
+    <p class="help">E+ deja de publicar tanta noticia chimba, grax</p>
 </div>
 
 <script>
@@ -60,7 +60,7 @@
 
     // Constantes matemáticas fijas para las comisiones
     const descBinance = 0.975; // Representa el 100% - 2.5%
-    const comUsdt = 1.036;     // Representa el 100% + 3.6%
+    const comUsdt = 0.964;     // Representa el 100% + 3.6%
 
     // 1. Si el usuario escribe en "USD en BDV"
     function calcularDesdeUSD() {
