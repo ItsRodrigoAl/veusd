@@ -5,18 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora BDV BPAY</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 450px; margin: 40px auto; padding: 20px; background-color: #f4f6f9; color: #333; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h2 { text-align: center; margin-bottom: 25px; color: #1e3a8a; font-size: 1.6em; }
-        .campo { margin-bottom: 25px; display: flex; flex-direction: column; }
-        label { font-weight: 600; margin-bottom: 8px; color: #4b5563; font-size: 0.95em; }
-        .input-group { display: flex; align-items: center; }
-        input[type="number"] { flex: 1; padding: 12px; font-size: 1.2em; border: 2px solid #e5e7eb; border-radius: 8px; text-align: right; font-weight: bold; }
-        input[type="number"]:focus { border-color: #3b82f6; outline: none; }
-        .badge { background: #f3f4f6; padding: 12px; min-width: 80px; text-align: center; font-weight: bold; border-radius: 0 8px 8px 0; border: 2px solid #e5e7eb; border-left: none; color: #4b5563; font-size: 0.9em; }
-        input { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
-        .info-comision { font-size: 0.8em; color: #dd6b20; margin-top: 4px; font-weight: 500; }
-        p.help { font-size: 0.85em; color: #6b7280; text-align: center; margin-top: 20px; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 450px; margin: 40px auto; padding: 20px; background-color: #f4f6f9; color: #333; }
+.card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+h2 { text-align: center; margin-bottom: 25px; color: #1e3a8a; font-size: 1.6em; }
+.campo { margin-bottom: 25px; display: flex; flex-direction: column; }
+label { font-weight: 600; margin-bottom: 8px; color: #4b5563; font-size: 0.95em; }
+
+/* ESTE ES EL TRUCO: El contenedor ahora simula ser el input */
+.input-group { 
+    display: flex; 
+    align-items: center; 
+    border: 2px solid #e5e7eb; 
+    border-radius: 8px; 
+    background: white;
+    overflow: hidden;
+}
+.input-group:focus-within { border-color: #3b82f6; } /* Azul al hacer clic */
+
+/* El input real se vuelve invisible y se alinea a la izquierda */
+input[type="number"] { 
+    flex: 1; 
+    padding: 12px; 
+    font-size: 1.2em; 
+    border: none; 
+    outline: none;
+    text-align: left; /* Monto a la izquierda */
+    font-weight: bold; 
+    background: transparent;
+    width: 100%;
+}
+
+/* El texto de la divisa se queda fijo a la derecha dentro del recuadro */
+.badge { 
+    padding: 12px; 
+    font-weight: bold; 
+    color: #9ca3af; /* Color gris suave de texto secundario */
+    font-size: 0.95em; 
+    user-select: none; /* Evita que se seleccione el texto al hacer doble clic */
+    background: transparent;
+}
+
+.info-comision { font-size: 0.8em; color: #dd6b20; margin-top: 4px; font-weight: 500; }
+p.help { font-size: 0.85em; color: #6b7280; text-align: center; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -45,7 +75,7 @@
         <label for="montoUsdt">Monto a recibir en Binance</label>
         <div class="input-group">
             <input type="number" id="montoUsdt" oninput="calcularDesdeUsdt()" placeholder="0.00" step="any">
-            <div class="badge">USDT (3)</div>
+            <div class="badge">USD</div>
         </div>
         <span class="info-comision">Comisión: -3.6%</span>
     </div>
