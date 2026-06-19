@@ -65,6 +65,60 @@ details[open] summary::after { transform: rotate(90deg); color: #3b82f6; }
 
 /* El texto interior que se esconde/muestra */
 details p { margin-top: 10px; font-size: 0.9em; color: #6b7280; line-height: 1.5; margin-bottom: 0; }
+
+        /* Configuración del Tooltip (Signo de interrogación) */
+.campo label { display: flex; align-items: center; gap: 6px; } /* Alinea el título con el emoji */
+
+.tooltip {
+    font-size: 0.85em;
+    cursor: help;
+    position: relative;
+    display: inline-block;
+}
+
+/* El recuadro negro flotante (escondido por defecto) */
+.tooltip::after {
+    content: attr(data-texto); /* Toma el texto del HTML dinámicamente */
+    position: absolute;
+    bottom: 130%; /* Lo posiciona arriba del emoji */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1e293b; /* Color oscuro elegante */
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    font-weight: normal;
+    white-space: normal;
+    width: 200px; /* Ancho máximo de la cajita de ayuda */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    text-align: center;
+    z-index: 10;
+}
+
+/* La pequeña flecha debajo del recuadro flotante */
+.tooltip::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1e293b transparent transparent transparent;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+/* Cuando pasas el mouse por encima (o lo tocas), se muestra */
+.tooltip:hover::after, .tooltip:hover::before {
+    opacity: 1;
+}
+        
     </style>
 </head>
 <body>
@@ -72,16 +126,24 @@ details p { margin-top: 10px; font-size: 0.9em; color: #6b7280; line-height: 1.5
 <div class="card">
     <h2>🧮 Calculadora</h2>
 
+    <!-- Campo 1 -->
     <div class="campo">
-        <label for="usdBdv">¿Cuántos USD tienes en BDV?</label>
+        <label for="usdBdv">
+            BDV 
+            <span class="tooltip" data-texto="Monto en dólares dentro del banco.">❓</span>
+        </label>
         <div class="input-group">
             <input type="number" id="usdBdv" oninput="calcularDesdeUSD()" placeholder="0.00" step="any">
             <div class="badge">USD</div>
         </div>
     </div>
 
+    <!-- Campo 2 -->
     <div class="campo">
-        <label for="montoBinance">Monto a colocar en Binance</label>
+        <label for="montoBinance">
+            BPAY/GPAY
+            <span class="tooltip" data-texto="Monto a colocar en Binance para evitar error de saldo insuficiente.">❓</span>
+        </label>
         <div class="input-group">
             <input type="number" id="montoBinance" oninput="calcularDesdeBinance()" placeholder="0.00" step="any">
             <div class="badge">USD</div>
@@ -89,8 +151,12 @@ details p { margin-top: 10px; font-size: 0.9em; color: #6b7280; line-height: 1.5
         <span class="info-comision">Comisión: -2.5%</span>
     </div>
 
+    <!-- Campo 3 -->
     <div class="campo">
-        <label for="montoUsdt">Monto a recibir en Binance</label>
+        <label for="montoUsdt">
+            Binance
+            <span class="tooltip" data-texto="Monto neto que recibirás en Binance tras las comisiones">❓</span>
+        </label>
         <div class="input-group">
             <input type="number" id="montoUsdt" oninput="calcularDesdeUsdt()" placeholder="0.00" step="any">
             <div class="badge">USD</div>
