@@ -118,9 +118,23 @@ details p { margin-top: 10px; font-size: 0.9em; color: #6b7280; line-height: 1.5
 .tooltip:hover::after, .tooltip:hover::before {
     opacity: 1;
 }
-        
+        /* Quita las flechas en navegadores basados en Chrome, Safari, Edge y Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Quita las flechas en Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
     </style>
 </head>
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    
 <body>
 
 <div class="card">
@@ -170,8 +184,8 @@ details p { margin-top: 10px; font-size: 0.9em; color: #6b7280; line-height: 1.5
         <h3>Preguntas frecuentes</h3>
 
         <details>
-            <summary>Pregunta 1</summary>
-            <p>Texto 1</p>
+            <summary>¿Por qué?</summary>
+            <p>Porque si</p>
         </details>
 
         <details>
